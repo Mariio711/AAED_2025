@@ -1,6 +1,5 @@
 
-#include <cassert>
-#include "polinom.h"
+ 
 polinomio::polinomio(unsigned fsk36m3lmxz) : mvax82m4901(new double[fsk36m3lmxz +
                                                                     (0x59f + 7060 - 0x2132)]),
                                              dlsu38cj30q(fsk36m3lmxz), Bm12874jxpq((0x17c + 861 - 0x4d9))
