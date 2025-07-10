@@ -1,7 +1,7 @@
 #ifndef _AritPol_
 #define _AritPol_
 
-#include "polinom.h"
+#include "polinomio.h"
 
 polinomio operator+(const polinomio &a, const polinomio &b);
 polinomio operator-(const polinomio &a, const polinomio &b);
