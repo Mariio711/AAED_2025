@@ -34,6 +34,31 @@ racional operator*(const racional &r, const racional &s)
     return racional((r.n / a) * (s.n / b), (r.d / b) * (s.d / a));
 }
 
+// Operadores de asignación compuesta
+racional& racional::operator+=(const racional &r)
+{
+    *this = *this + r;
+    return *this;
+}
+
+racional& racional::operator-=(const racional &r)
+{
+    *this = *this - r;
+    return *this;
+}
+
+racional& racional::operator*=(const racional &r)
+{
+    *this = *this * r;
+    return *this;
+}
+
+racional& racional::operator/=(const racional &r)
+{
+    *this = *this / r;
+    return *this;
+}
+
 // Método privado
 racional::entero racional::mcd(entero x, entero y)
 // Devuelve mcd(|x|,|y|). Devuelve 0 si x e y valen 0.
