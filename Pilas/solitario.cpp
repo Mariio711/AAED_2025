@@ -1,5 +1,6 @@
 #include <iostream>
-#include <algorithm> //random_shuffle
+#include <algorithm> // random_shuffle o shuffle
+#include <random>
 #include <ctime>
 #include "carta.h"
 #include "pilaenla.h"
@@ -34,6 +35,11 @@ bool solitario(tCarta *baraja, tfig *base)
             {
                 Monton.push(Mazo.tope());
                 Mazo.pop();
+                Monton.push(Mazo.tope());
+                Mazo.pop();
+            }
+            else if (Mazo.tama() == 1)
+            {
                 Monton.push(Mazo.tope());
                 Mazo.pop();
             }
@@ -80,13 +86,14 @@ int main()
         }
     }
 
-    srand(time(0));
+    std::random_device rd;
+    std::mt19937 g(rd());
     bool victoria = false;
     int partidas = 0;
 
     do
     {
-        random_shuffle(baraja, baraja + 40); // barajar cartas
+        std::shuffle(baraja, baraja + 40, g); // barajar cartas
         victoria = solitario(baraja, base);  // jugar
 
         // Mostrar resultado
@@ -98,8 +105,9 @@ int main()
              << "\t" << tCarta(BASTOS, base[BASTOS]) << endl
              << endl;
     } while (!victoria); // Parar al ganar una partida.
-    cout << "½Conseguido! Bien hecho.\n"
+    cout << "¡Conseguido! Bien hecho.\n"
          << endl;
 
+    system("pause");
     return 0;
 }
