@@ -1,5 +1,6 @@
 #ifndef PILA_ENLA_H
 #define PILA_ENLA_H
+#include <fstream>
 #include <cstddef> //size_t
 #include <cassert>
 
@@ -79,7 +80,7 @@ Pila<T>::Pila(const Pila &P) : Pila()
     {
         tope_ = new nodo(P.tope()); // copiar el primer elemento
         // Copiar el resto de elementos hasta el fondo de la pila
-        nodo *p = tope_;       // p recorre la pila destino(*this)
+        nodo *p = tope_;        // p recorre la pila destino(*this)
         nodo *q = P.tope_->sig; // q recorre la pila origen (P) desde el segundo nodo
         while (q)
         {
@@ -118,6 +119,27 @@ Pila<T>::~Pila()
         tope_ = p;
     }
     n_eltos = 0;
+}
+
+// Apila en P los valores numéricos de los dígitos extraídos del flujo de entrada fe
+inline std::fstream &operator>>(std::fstream &fe, Pila<int> &P)
+{
+    char cifra;
+    while (fe.get(cifra) && cifra != '\n') // leer caracteres hasta fin de línea
+        P.push(cifra - '0');               // convierte un dígito en su valor numérico
+    return fe;
+}
+
+// Inserta en el flujo los elementos de la pila (del tope al fondo)
+inline std::fstream &operator<<(std::fstream &fs, Pila<int> &P)
+{
+    while (!P.vacia())
+    {
+        fs << P.tope();
+        P.pop();
+    }
+    fs << std::endl;
+    return fs;
 }
 
 #endif // PILA_ENLA_H
