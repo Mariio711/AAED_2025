@@ -34,9 +34,9 @@ public:
 
     // metodos especificos de conjuntos
     bool contiene(const T &x) const; // Comprobar pertenencia
-    Conjunto union_(const Conjunto &otro);
-    Conjunto interseccion(const Conjunto &otro);
-    Conjunto diferencia(const Conjunto &otro);
+    Conjunto operator+(const Conjunto &otro) const;
+    Conjunto operator&(const Conjunto &otro) const;
+    Conjunto operator-(const Conjunto &otro) const;
 
     ~Conjunto(); // Destructor
 private:
@@ -188,7 +188,7 @@ bool Conjunto<T>::contiene(const T &x) const
 }
 
 template <typename T>
-Conjunto<T> Conjunto<T>::interseccion(const Conjunto &otro)
+Conjunto<T> Conjunto<T>::operator&(const Conjunto &otro) const
 {
     Conjunto<T> inter;
 
@@ -213,7 +213,7 @@ Conjunto<T> Conjunto<T>::interseccion(const Conjunto &otro)
 }
 
 template <typename T>
-Conjunto<T> Conjunto<T>::union_(const Conjunto &otro)
+Conjunto<T> Conjunto<T>::operator+(const Conjunto &otro) const
 {
     Conjunto<T> uni;
 
@@ -246,8 +246,21 @@ Conjunto<T> Conjunto<T>::union_(const Conjunto &otro)
 }
 
 template <typename T>
-Conjunto<T> Conjunto<T>::diferencia(const Conjunto &otro)
+Conjunto<T> Conjunto<T>::operator-(const Conjunto &otro) const
 {
+    Conjunto<T> dif;
+    posicion p = this->primera();
+    while(p != this->fin())
+    {
+        if(!otro.contiene(this->elemento(p)))
+        {
+            posicion q = dif.fin();
+            dif.insertar(this->elemento(p), q);
+        }
+        p = this->siguiente(p);
+    }
+    return dif;
+
 }
 
 template <typename T>
