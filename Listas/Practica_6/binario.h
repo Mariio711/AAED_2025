@@ -78,13 +78,25 @@ std::string Binario::verNumero() const
 
 Binario operator&(const Binario &a, const Binario &b)
 {
-    Binario res;
-    Lista<int>::posicion p = a.Bin.primera(), q = b.Bin.primera(), r = res.Bin.primera();
-    while (p != a.Bin.fin() && q != b.Bin.fin())
+    Binario res, a_copia(a.verNumero()), b_copia(b.verNumero());
+    Lista<int>::posicion p = a_copia.Bin.primera(), q = b_copia.Bin.primera(), r = res.Bin.primera();
+
+    while (a_copia.Bin.tama() != b_copia.Bin.tama())
     {
-        res.Bin.insertar(a.Bin.elemento(p) & b.Bin.elemento(q), r);
-        p = a.Bin.siguiente(p);
-        q = b.Bin.siguiente(q);
+        if (a_copia.Bin.tama() > b_copia.Bin.tama())
+        {
+            b_copia.Bin.insertar(0, b_copia.Bin.fin());
+        }
+        else
+        {
+            a_copia.Bin.insertar(0, a_copia.Bin.fin());
+        }
+    }
+    while (p != a_copia.Bin.fin() && q != b_copia.Bin.fin())
+    {
+        res.Bin.insertar(a_copia.Bin.elemento(p) & b_copia.Bin.elemento(q), r);
+        p = a_copia.Bin.siguiente(p);
+        q = b_copia.Bin.siguiente(q);
         r = res.Bin.siguiente(r);
     }
 
@@ -120,7 +132,7 @@ Binario operator|(const Binario &a, const Binario &b)
 
 Binario operator^(const Binario &a, const Binario &b)
 {
-        Binario res, a_copia(a.verNumero()), b_copia(b.verNumero());
+    Binario res, a_copia(a.verNumero()), b_copia(b.verNumero());
     Lista<int>::posicion p = a_copia.Bin.primera(), q = b_copia.Bin.primera(), r = res.Bin.primera();
 
     while (a_copia.Bin.tama() != b_copia.Bin.tama())
@@ -151,7 +163,7 @@ Binario Binario::operator~() const
     Lista<int>::posicion p = this->Bin.primera(), q = res.Bin.primera();
     while (p != this->Bin.fin())
     {
-        if(this->Bin.elemento(p) == 0)
+        if (this->Bin.elemento(p) == 0)
         {
             res.Bin.insertar(1, q);
         }
@@ -162,6 +174,7 @@ Binario Binario::operator~() const
         p = this->Bin.siguiente(p);
         q = res.Bin.siguiente(q);
     }
+    return res;
 }
 
 Binario operator<<(const Binario &a, int n)
@@ -169,7 +182,7 @@ Binario operator<<(const Binario &a, int n)
     Binario res;
     Lista<int>::posicion p = a.Bin.primera(), q = res.Bin.primera();
 
-    while(p != a.Bin.fin())
+    while (p != a.Bin.fin())
     {
         res.Bin.insertar(a.Bin.elemento(p), q);
         p = a.Bin.siguiente(p);
@@ -187,22 +200,26 @@ Binario operator<<(const Binario &a, int n)
 
 Binario operator>>(const Binario &a, int n)
 {
+    if (n <= 0) return a;  // Si no hay desplazamiento, devolver el original
+    
+    // Si el desplazamiento es mayor o igual al número de bits, devolver 0
+    if (n >= a.Bin.tama()) return Binario("0");
+    
     Binario res;
     Lista<int>::posicion p = a.Bin.primera(), q = res.Bin.primera();
-
-    while(p != a.Bin.fin())
-    {
+    
+    // Saltar los primeros n bits (los n bits menos significativos)
+    for (int i = 0; i < n && p != a.Bin.fin(); i++) {
+        p = a.Bin.siguiente(p);
+    }
+    
+    // Copiar los bits restantes
+    while (p != a.Bin.fin()) {
         res.Bin.insertar(a.Bin.elemento(p), q);
         p = a.Bin.siguiente(p);
         q = res.Bin.siguiente(q);
     }
-
-    for (int i = 0; i < n; i++)
-    {
-        res.Bin.insertar(0, q);
-        q = res.Bin.siguiente(q);
-    }
-
+    
     return res;
 }
 
