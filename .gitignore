@@ -1,6 +1,6 @@
 # Prerequisites
 *.d
-
+.vscode
 # Compiled Object files
 *.slo
 *.lo
@@ -41,15 +41,16 @@
 *.dwo
 
 # macOS system files
-.DS_Store
-.AppleDouble
-._*
-.Spotlight-V100
-.Trashes
+*.DS_Store
+*.AppleDouble
+*._*
+*.Spotlight-V100
+*.Trashes
 Icon\r\n
-.yml
+*.yml
 
 # Windows thumbnails and metadata (sometimes generated when sharing)
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+
