@@ -56,5 +56,5 @@ ehthumbs.db
 Desktop.ini
 
 
-.vscode/
-.vscode/tasks.json
+.vscode/*
+
