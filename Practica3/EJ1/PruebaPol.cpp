@@ -1,5 +1,6 @@
 #include <iostream>
-#include "polinom.h"
+
+#include "polinomio.h"
 #include "AritPol.h"
 
 using namespace std;

@@ -22,6 +22,30 @@
                 "isDefault": true
             },
             "detail": "Tarea generada por el depurador."
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: Compilar solitario con carta",
+            "command": "C:\\MinGW\\bin\\g++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}\\solitario.cpp",
+                "${workspaceFolder}\\carta.cpp",
+                "-o",
+                "${workspaceFolder}\\solitario.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "Tarea para compilar solitario con carta"
         }
     ],
     "version": "2.0.0"

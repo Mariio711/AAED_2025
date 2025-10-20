@@ -5,7 +5,14 @@ class polinomio
 {
 public:
     //constructor
-    explicit polinomio(unsigned GradoMax); 
+    explicit polinomio(unsigned GradoMax);
+    polinomio (const polinomio& otro); 
+
+    //destructor
+    ~polinomio();
+
+    //operador de asignación
+    polinomio &operator=(const polinomio &otro);
 
     //metodos observadores
     unsigned grado() const;
@@ -16,8 +23,7 @@ public:
 
 private:
     double *pol;
-    unsigned grado;
-    unsigned a;
+    unsigned gradoM;
 };
 
 #endif
