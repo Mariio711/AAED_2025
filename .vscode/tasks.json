@@ -9,7 +9,7 @@
                 "-g",
                 "${file}",
                 "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
+                "${fileDirname}\\${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${fileDirname}"
@@ -33,7 +33,7 @@
                 "${workspaceFolder}\\solitario.cpp",
                 "${workspaceFolder}\\carta.cpp",
                 "-o",
-                "${workspaceFolder}\\solitario.exe"
+                "${workspaceFolder}\\solitario"
             ],
             "options": {
                 "cwd": "${workspaceFolder}"
