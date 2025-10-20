@@ -1,6 +1,6 @@
 # Prerequisites
 *.d
-.vscode
+
 # Compiled Object files
 *.slo
 *.lo
@@ -56,5 +56,5 @@ ehthumbs.db
 Desktop.ini
 
 
-.vscode/*
+
 
