@@ -9,7 +9,7 @@ set style data linespoints
 
 # Representacion grafica.
 
-set terminal x11 1
+set terminal qt 1
 plot "prueba-1.tmp" title "Ordenacion por intercambio directo", \
      "prueba-2.tmp" title "Ordenacion por seleccion directa", \
      "prueba-3.tmp" title "Ordenacion por insercion directa"
