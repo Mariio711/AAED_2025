@@ -1,4 +1,4 @@
-#include "polinom.h"
+#include "poli_user.h"
 #include "AritPol.h"
 #include <iostream>
 

@@ -1,4 +1,3 @@
-#include "polinom.h"
 #include "AritPol.h"
 
 // Suma de polinomios
