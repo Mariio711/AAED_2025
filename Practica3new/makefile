@@ -17,8 +17,8 @@ CXX=g++
 CXXFLAGS=-std=c++11 -Wall -Wextra -g
 
 # Archivos
-HEADERS=polinom.h AritPol.h
-OBJS=polinom.o AritPol.o Prueba.o
+HEADERS=poli_user.h AritPol.h
+OBJS=poli_user.o AritPol.o Prueba.o
 
 # Regla por defecto
 all: Prueba
@@ -34,7 +34,7 @@ Prueba.o: Prueba.cpp $(HEADERS)
 AritPol.o: AritPol.cpp $(HEADERS)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-polinom.o: polinom.cpp polinom.h
+poli_user.o: poli_user.cpp poli_user.h
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Limpiar archivos generados
