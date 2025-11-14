@@ -6,17 +6,16 @@ class polinomio
 {
 public:
     // Constructor
-    explicit polinomio(unsigned gradoMax = 0) : pol(new double[gradoMax + 1]), GradoMax(gradoMax), Grado(0) {}
+    explicit polinomio(unsigned gradoMax = 0);
 
     unsigned gradoMax() const { return GradoMax; };
     unsigned grado() const { return Grado; };
 
     double coeficiente(unsigned n) const { return (n > Grado) ? 0 : pol[n]; };
-    void coeficiente(unsigned n, double c)
-    {
-        if (n <= GradoMax)
-            pol[n] = c;
-    };
+    void coeficiente(unsigned n, double c);
+
+    polinomio& operator=(const polinomio &otro);
+    ~polinomio();
 
 private:
     double *pol;
